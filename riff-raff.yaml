@@ -1,29 +1,29 @@
 stacks: [playground]
 regions: [eu-west-1]
 templates:
-  jr-microservice-workshop:
+  simona-aws:
     type: aws-lambda
-    app: jr-microservice-workshop
-    contentDirectory: jr-microservice-workshop
+    app: simona-aws
+    contentDirectory: simona-aws
     parameters:
       bucket: gu-jr-microservice-workshop-dist
-      functionNames: [jr-microservice-workshop-]
-      fileName: jr-microservice-workshop.zip
+      functionNames: [simona-aws-]
+      fileName: simona-aws.zip
       prefixStack: false
 
 deployments:
   jr-microservice-upload:
-    template: jr-microservice-workshop
+    template: simona-aws
     actions: [uploadLambda]
-  jr-microservice-workshop-cfn:
+  simona-aws-cfn:
     type: cloud-formation
-    app: jr-microservice-workshop
+    app: simona-aws
     parameters:
       prependStackToCloudFormationStackName: false
-      cloudFormationStackName: jr-microservice-workshop
+      cloudFormationStackName: simona-aws
       templatePath: cfn.yaml
     dependencies: [jr-microservice-upload]
   jr-microservice-lambda-update:
-    template: jr-microservice-workshop
+    template: simona-aws
     actions: [updateLambda]
-    dependencies: [jr-microservice-workshop-cfn]
+    dependencies: [simona-aws-cfn]
