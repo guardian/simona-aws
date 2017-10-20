@@ -22,7 +22,7 @@ deployments:
       prependStackToCloudFormationStackName: false
       cloudFormationStackName: simona-aws
       templatePath: cfn.yaml
-    dependencies: [simona-aws]
+    dependencies: [simona-aws-upload]
   simona-aws-lambda-update:
     template: simona-aws
     actions: [updateLambda]
