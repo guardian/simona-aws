@@ -17,7 +17,7 @@ deployments:
     actions: [uploadLambda]
   simona-aws-cfn:
     type: cloud-formation
-    app: <name of your project>
+    app: simona-aws
     parameters:
       prependStackToCloudFormationStackName: false
       cloudFormationStackName: simona-aws
