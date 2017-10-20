@@ -12,18 +12,6 @@ templates:
       prefixStack: false
 
 deployments:
-  jr-microservice-upload:
+  simona-aws-upload:
     template: simona-aws
     actions: [uploadLambda]
-  simona-aws-cfn:
-    type: cloud-formation
-    app: simona-aws
-    parameters:
-      prependStackToCloudFormationStackName: false
-      cloudFormationStackName: simona-aws
-      templatePath: cfn.yaml
-    dependencies: [jr-microservice-upload]
-  jr-microservice-lambda-update:
-    template: simona-aws
-    actions: [updateLambda]
-    dependencies: [simona-aws-cfn]
