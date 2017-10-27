@@ -7,7 +7,8 @@ import com.typesafe.scalalogging.LazyLogging
 
 object Lambda extends LazyLogging {
   def handler(in: InputStream, out: OutputStream): Unit = {
-    val response = APIResponse(200,  Map("Content-Type" -> "application/json"), "hello world again")
+    val received = in.toString()
+    val response = APIResponse(200,  Map("Content-Type" -> "application/json"), received)
     //no spaces converts json to a string
     out.write(response.asJson.noSpaces.getBytes(UTF_8))
   }
