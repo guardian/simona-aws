@@ -13,11 +13,12 @@ object Lambda extends LazyLogging {
   def handler(in: InputStream, out: OutputStream): Unit = {
     val received = Source.fromInputStream(in).mkString("")
     val request = decode[APIRequest](received).toOption.map(x => x.number).getOrElse(0)
-    val message = if(request == 0){
-      "You have sent a problem things"
-    } else {
-      "Thank you for your" + request.toString
+
+    val message = request match {
+      case 0 => "You have sent a problem things"
+      case n => "Thank you for your " + n.toString
     }
+
     //val body = received.asJson
     val response = APIResponse(200,  Map("Content-Type" -> "application/json"), message)
     //no spaces converts json to a string
